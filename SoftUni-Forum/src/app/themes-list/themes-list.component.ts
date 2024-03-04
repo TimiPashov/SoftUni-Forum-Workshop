@@ -15,7 +15,7 @@ export class ThemesListComponent implements OnInit {
       console.log(themes);
     });
 
-    this.api.getPosts().subscribe(posts => {
+    this.api.getPosts(3).subscribe(posts => {
       console.log(posts);
     })
   }
