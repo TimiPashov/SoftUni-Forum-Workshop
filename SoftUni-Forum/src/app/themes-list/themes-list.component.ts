@@ -13,6 +13,10 @@ export class ThemesListComponent implements OnInit {
   ngOnInit(): void {
     this.api.getThemes().subscribe(themes => {
       console.log(themes);
+    });
+
+    this.api.getPosts().subscribe(posts => {
+      console.log(posts);
     })
   }
 }
