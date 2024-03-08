@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MainComponent } from './main/main.component';
 import { ThemesListComponent } from './themes-list/themes-list.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
+import { UserModule } from './user/user.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PostsListComponent } from './posts-list/posts-list.component';
     CoreModule,
     SharedModule,
     HttpClientModule,
+    UserModule,
     AppRoutingModule
   ],
   providers: [],
