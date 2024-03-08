@@ -21,8 +21,8 @@ import { PostsListComponent } from './posts-list/posts-list.component';
     BrowserModule,
     CoreModule,
     SharedModule,
-    AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
