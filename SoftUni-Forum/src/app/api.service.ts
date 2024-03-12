@@ -11,21 +11,24 @@ import { Post } from './types/post';
 export class ApiService {
 
   constructor(private http: HttpClient) { }
+  apiUrl = environment.apiUrl
 
   getThemes() {
-    const { apiUrl } = environment;
-
-    return this.http.get<Theme[]>(`${apiUrl}/themes`);
+    return this.http.get<Theme[]>(`${this.apiUrl}/themes`);
   }
 
   getPosts(limit?: number) {
-    const { apiUrl } = environment;
-    let url = `${apiUrl}/posts`;
+
+    let url = `${this.apiUrl}/posts`;
 
     if (limit) {
       url += `?limit=${limit}`
     }
 
     return this.http.get<Post[]>(url);
+  }
+
+  getTheme(id: string | null) {
+    return this.http.get<Theme>(`${this.apiUrl}/themes/${id}`);
   }
 }
