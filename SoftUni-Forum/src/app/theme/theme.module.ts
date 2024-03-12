@@ -6,6 +6,7 @@ import { ThemeRoutingModule } from './theme-routing.module';
 import { MainComponent } from './main/main.component';
 import { ThemesListComponent } from './themes-list/themes-list.component';
 import { PostsListComponent } from './posts-list/posts-list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 
@@ -19,7 +20,8 @@ import { PostsListComponent } from './posts-list/posts-list.component';
   ],
   imports: [
     CommonModule,
-    ThemeRoutingModule
+    ThemeRoutingModule,
+    SharedModule
   ]
 })
 export class ThemeModule { }
