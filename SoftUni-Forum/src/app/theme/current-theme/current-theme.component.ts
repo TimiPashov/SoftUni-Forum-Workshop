@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/api.service';
 import { Theme } from 'src/app/types/theme';
@@ -8,19 +8,22 @@ import { Theme } from 'src/app/types/theme';
   templateUrl: './current-theme.component.html',
   styleUrls: ['./current-theme.component.css']
 })
-export class CurrentThemeComponent {
+export class CurrentThemeComponent implements OnInit {
   constructor(private api: ApiService, private route: ActivatedRoute) { }
+
   theme = {} as Theme;
-  currId: string | null = '';
 
-  id = this.route.paramMap.subscribe(params => {
+  ngOnInit(): void { 
 
-    this.currId = params.get('themeId');
+    this.route.paramMap.subscribe(params => { 
+      
+      this.api.getTheme(params.get('themeId')).subscribe(theme => {
 
-    this.api.getTheme(this.currId).subscribe(theme => {
-      this.theme = theme
-    });
-  })
+        this.theme = theme
+        
+      });
+    })
+  }
 
 
 }
