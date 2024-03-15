@@ -25,6 +25,7 @@ export class LoginComponent {
     
     console.log(form.value)
     this.userService.login();
+    form.reset();
     this.router.navigate(['/home']);
 
   }
