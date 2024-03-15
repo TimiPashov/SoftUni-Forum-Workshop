@@ -23,8 +23,8 @@ export class LoginComponent {
       return;
     }
     
-    console.log(form.value)
-    this.userService.login();
+    // console.log(form.value)
+    this.userService.login(form.value.email, form.value.password);
     form.reset();
     this.router.navigate(['/home']);
 
