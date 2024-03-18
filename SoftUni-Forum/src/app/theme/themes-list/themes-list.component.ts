@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
 import { UserService } from 'src/app/user/user.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,8 +10,9 @@ import { UserService } from 'src/app/user/user.service';
   templateUrl: './themes-list.component.html',
   styleUrls: ['./themes-list.component.css']
 })
-export class ThemesListComponent implements OnInit {
+export class ThemesListComponent implements OnInit, OnDestroy {
   themes: Theme[] = [];
+  private subscription = {} as Subscription;
   constructor(private api: ApiService, private userService: UserService) { }
 
   get isLoggedIn(): boolean {
@@ -19,19 +21,23 @@ export class ThemesListComponent implements OnInit {
 
   isSubscribed(theme: Theme): boolean {
     const userId = this.userService.user?.id;
-    const isSubscribed = theme.subscribers.find( (id)=> {
-     return id === userId
+    const isSubscribed = theme.subscribers.find((id) => {
+      return id === userId
     });
     return !!isSubscribed;
   }
 
 
   ngOnInit(): void {
-    this.api.getThemes().subscribe(themes => {
-    
-      this.themes = themes;
+    this.subscription = this.api.getThemes().subscribe(themes => {    
+      this.themes = themes;      
     });
   }
 
+  ngOnDestroy(): void {
+    if(this.subscription){
+      this.subscription.unsubscribe();
+    }
+  }
 
 }
